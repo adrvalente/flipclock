@@ -10,6 +10,22 @@ document.getElementById('format').onclick=e=>{use24=!use24;e.currentTarget.textC
 // O tamanho dos algarismos é calculado a partir da largura e altura úteis da janela.
 const focusButton=document.getElementById('focus');
 const exitFocusButton=document.getElementById('exitFocus');
+let exitHideTimer;
+function scheduleExitHide(){
+  clearTimeout(exitHideTimer);
+  exitFocusButton.classList.remove('auto-hidden');
+  exitHideTimer=setTimeout(()=>{
+    if(!exitFocusButton.matches(':hover')&&!exitFocusButton.matches(':focus-visible'))
+      exitFocusButton.classList.add('auto-hidden');
+  },2000);
+}
+exitFocusButton.addEventListener('mouseenter',()=>{
+  clearTimeout(exitHideTimer);
+  exitFocusButton.classList.remove('auto-hidden');
+});
+exitFocusButton.addEventListener('mouseleave',scheduleExitHide);
+exitFocusButton.addEventListener('focus',()=>{clearTimeout(exitHideTimer);exitFocusButton.classList.remove('auto-hidden')});
+exitFocusButton.addEventListener('blur',scheduleExitHide);
 function fitFocusClock(){
   if(!document.body.classList.contains('focus-mode'))return;
   const w=window.innerWidth,h=window.innerHeight;
@@ -30,7 +46,8 @@ function setFocus(enabled){
   document.body.classList.toggle('focus-mode',enabled);
   focusButton.setAttribute('aria-pressed',String(enabled));
   focusButton.textContent=enabled?'Mostrar painel':'Só relógio';
-  if(enabled)fitFocusClock();
+  if(enabled){fitFocusClock();scheduleExitHide();}
+  else{clearTimeout(exitHideTimer);exitFocusButton.classList.remove('auto-hidden');}
 }
 focusButton.addEventListener('click',()=>setFocus(true));
 exitFocusButton.addEventListener('click',()=>setFocus(false));

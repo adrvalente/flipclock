@@ -11,6 +11,7 @@ body.focus-mode{overflow:hidden}
 .focus-mode .digit{width:var(--focus-digit-w,110px);height:var(--focus-digit-h,160px)}
 .focus-mode .half{font-size:var(--focus-font,105px);border-radius:clamp(4px,1vw,18px)}
 .focus-mode .colon{font-size:var(--focus-colon,70px);margin-top:calc(var(--focus-digit-h,160px) * -.14)}
-.focus-mode #exitFocus{display:block;opacity:.32;transition:opacity .2s}
+.focus-mode #exitFocus{display:block;opacity:1;transition:opacity .25s ease}
+.focus-mode #exitFocus.auto-hidden{opacity:0}
 .focus-mode #exitFocus:hover,.focus-mode #exitFocus:focus-visible{opacity:1}
 @media(max-width:850px){.focus-mode main{min-height:0}.focus-mode .clock{gap:var(--focus-gap,12px)}.focus-mode .colon{font-size:var(--focus-colon,70px);margin-top:calc(var(--focus-digit-h,160px) * -.14)}}
