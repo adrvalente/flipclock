@@ -1,27 +1,29 @@
-# FlipClock Website
+# FlipClock V2.2.0
 
-Website de relógio digital com animação flip, inspirado no conceito visual de flipclock.online.
+Relógio digital com animação flip, temas, formato 12/24h, modo só relógio com redimensionamento automático, botão Sair com ocultação automática e gestão de alarmes.
 
-## Funcionalidades
-- Horas, minutos e segundos em tempo local
-- Animação flip
-- Seis temas visuais
-- Formato 12/24 horas
-- Modo de ecrã inteiro
-- Layout responsivo
+## Executar
 
-## Utilização
-Abrir `index.html` num navegador. Não requer dependências, instalação nem servidor.
+Abrir `index.html` no navegador ou publicar os ficheiros no GitHub Pages. Não requer servidor ou dependências.
+
+## Alarmes
+
+- Abrir **Alarmes** na barra lateral.
+- Criar alarmes únicos ou recorrentes (diário, dias úteis, fim de semana, dias personalizados).
+- Editar, ativar/desativar e eliminar alarmes.
+- Premir **Ativar som** para permitir a reprodução do toque no navegador; pode ser necessário fazê-lo novamente após reabrir a página.
+- Quando um alarme toca, é apresentado um aviso sobre o relógio, mesmo em modo Só relógio, com opções Parar, Adiar 5 min e Adiar 10 min.
+- Os alarmes são guardados no `localStorage` do navegador. Os adiamentos não persistem após fechar/recarregar a página.
+
+**Limitações:** o website precisa de estar aberto. Os navegadores podem suspender temporizadores em segundo plano, impedir áudio automático ou não disparar alarmes com o dispositivo suspenso. Não utilizar como único alarme para situações importantes. Não há notificações push nem serviço em segundo plano.
+
+## Ficheiros
+
+- `index.html`: interface
+- `css/style.css`: estilos
+- `js/script.js`: relógio, temas e modos
+- `js/alarms.js`: alarmes e persistência local
 
 ## Publicação
-Publicar os ficheiros na raiz de um repositório GitHub Pages ou num alojamento estático.
 
-## Estrutura
-- `index.html` — estrutura da página
-- `css/style.css` — estilos e animações
-- `js/script.js` — lógica e funcionalidades
-- `assets/images/` — pasta reservada a imagens futuras
-
-## Modo só relógio
-
-Clique em **Só relógio** para ocultar o painel, a data e os rótulos. O relógio ajusta-se automaticamente ao tamanho da janela, incluindo ao redimensionar. Use **✕ Sair** ou a tecla **Esc** para voltar. O botão **Ecrã inteiro** continua independente.
+Compatível com alojamento estático, incluindo GitHub Pages.

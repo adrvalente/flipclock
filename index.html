@@ -1,1 +1,21 @@
-<!doctype html><html lang="pt-PT"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>FlipClock</title><link rel="stylesheet" href="css/style.css"></head><body><button id="exitFocus" aria-label="Mostrar painel e controlos" title="Sair do modo só relógio">✕ Sair</button><div class="app"><aside class="sidebar"><h1>FlipClock</h1><p>Relógio digital com animação flip</p><div class="actions"><button id="fullscreen">Ecrã inteiro</button><button id="format">24H</button><button id="focus" aria-pressed="false">Só relógio</button></div><h2>Temas</h2><div id="themes" class="themes"></div></aside><main><div class="clock" id="clock"><div class="unit"><div id="hours" class="digits"></div><small>HORAS</small></div><span class="colon">:</span><div class="unit"><div id="minutes" class="digits"></div><small>MINUTOS</small></div><span class="colon">:</span><div class="unit"><div id="seconds" class="digits"></div><small>SEGUNDOS</small></div></div><p id="date"></p></main></div><script src="js/script.js"></script></body></html>
+<!doctype html><html lang="pt-PT"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>FlipClock</title><link rel="stylesheet" href="css/style.css"></head><body><button id="exitFocus" aria-label="Mostrar painel e controlos" title="Sair do modo só relógio">✕ Sair</button><div class="app"><aside class="sidebar"><h1>FlipClock</h1><p>Relógio digital com animação flip</p><div class="actions"><button id="fullscreen">Ecrã inteiro</button><button id="format">24H</button><button id="focus" aria-pressed="false">Só relógio</button><button id="openAlarms" type="button">⏰ Alarmes</button></div><h2>Temas</h2><div id="themes" class="themes"></div></aside><main><div class="clock" id="clock"><div class="unit"><div id="hours" class="digits"></div><small>HORAS</small></div><span class="colon">:</span><div class="unit"><div id="minutes" class="digits"></div><small>MINUTOS</small></div><span class="colon">:</span><div class="unit"><div id="seconds" class="digits"></div><small>SEGUNDOS</small></div></div><p id="date"></p></main></div><dialog id="alarmDialog" class="alarm-dialog" aria-labelledby="alarmTitle">
+ <div class="dialog-head"><h2 id="alarmTitle">⏰ Alarmes</h2><button type="button" id="closeAlarms" aria-label="Fechar">✕</button></div>
+ <p class="hint">Os alarmes funcionam enquanto esta página estiver aberta. Ativa o som para ouvir o toque.</p>
+ <div class="alarm-actions"><button type="button" id="enableSound">🔊 Ativar som</button><button type="button" id="testSound">Testar toque</button></div>
+ <form id="alarmForm">
+  <input type="hidden" id="alarmId">
+  <label>Hora <input id="alarmTime" type="time" required value="07:30"></label>
+  <label>Nome <input id="alarmName" maxlength="60" placeholder="Ex.: Despertar"></label>
+  <label>Repetição <select id="alarmRepeat"><option value="once">Uma vez</option><option value="daily">Todos os dias</option><option value="weekdays">Dias úteis</option><option value="weekends">Fim de semana</option><option value="custom">Personalizar</option></select></label>
+  <fieldset id="customDays" hidden><legend>Dias da semana</legend><div class="day-options">
+   <label><input type="checkbox" value="1">Seg</label><label><input type="checkbox" value="2">Ter</label><label><input type="checkbox" value="3">Qua</label><label><input type="checkbox" value="4">Qui</label><label><input type="checkbox" value="5">Sex</label><label><input type="checkbox" value="6">Sáb</label><label><input type="checkbox" value="0">Dom</label>
+  </div></fieldset>
+  <div class="form-actions"><button type="submit" id="saveAlarm">Guardar alarme</button><button type="button" id="cancelEdit">Limpar</button></div>
+ </form>
+ <h3>Alarmes guardados</h3><div id="alarmList" class="alarm-list"></div>
+</dialog>
+<div id="alarmOverlay" class="alarm-overlay" role="alertdialog" aria-modal="true" aria-labelledby="ringTitle" hidden>
+ <div class="ring-card"><p>⏰ ALARME</p><h2 id="ringTitle">Alarme</h2><div id="ringTime" class="ring-time"></div>
+ <div class="ring-actions"><button type="button" id="snooze5">Adiar 5 min</button><button type="button" id="snooze10">Adiar 10 min</button><button type="button" id="stopAlarm">Parar</button></div></div>
+</div>
+<script src="js/script.js"></script><script src="js/alarms.js"></script></body></html>
